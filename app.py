@@ -16,7 +16,8 @@ api = tweepy.API(auth)
 @app.route("/tweet", methods=["POST"])
 def tweet():
     data = request.get_json()
-    tweet_text = data.get("text")
+    tweet_text = data.get("text", "")
+
     if not tweet_text:
         return jsonify({"error": "No text provided"}), 400
 
